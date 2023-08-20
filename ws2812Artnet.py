@@ -11,7 +11,7 @@ universe = data["settings"]["universe"]
 pixelCount = data["settings"]["pixels"]
 
 #pixelCount = 30
-pixels = neopixel.NeoPixel(board.D18, pixelCount)
+pixels = neopixel.NeoPixel(board.D18, pixelCount, pixel_order=neopixel.RGB)
 
 #universe = 1
 server = StupidArtnetServer()
