@@ -11,7 +11,7 @@ universe = data["settings"]["universe"]
 pixelCount = data["settings"]["pixels"]
 
 #pixelCount = 30
-pixels = neopixel.NeoPixel(board.D18, pixelCount, pixel_order=neopixel.RGB)
+pixels = neopixel.NeoPixel(board.D18, pixelCount, auto_write=False, pixel_order=neopixel.RGB)
 
 #universe = 1
 server = StupidArtnetServer()
@@ -22,4 +22,5 @@ while True:
 		#print(data)
 		for i in range(pixelCount):
 			pixels[i] = (data[(3 * i) + 0], data[(3 * i) + 1], data[(3 * i) + 2])
+		pixels.show()
 del server
