@@ -106,7 +106,36 @@
 	stop it with Ctrl + C (the script will then crash with an error message, which can be ignored)  
 
 8. Setup the auto-startup of the script:  
-	will follow  
+	1. Create a artnet service in systemd:
+		````bash
+  		sudo nano /etc/systemd/system/artnet.service
+		````
+  	2. Add the following serivce configuration into the file:
+		[Unit]
+    		Description=Start a script to control the LEDs via artnet
+		
+    		[Service]
+    		Restart=always
+    		ExecStart=sudo python3 ws2812Artnet.py
+		
+    		[Install]
+    		WantedBy=multi-user.target
+	
+ 	3. Set the correct file permissions for the file:
+		````bash
+  		sudo chmod 644 /etc/systemd/system/artnet.service
+  		````
+
+  	4. Then enable the service with:
+		````bash
+   		sudo systemctl daemon-reload
+		sudo systemctl enable artnet.service
+   		````
+
+   	5. Now restart the device in order to test if it worked:
+		````bash
+  		sudo reboot
+   		````
 
 9. Setup a shutdown button:  
 	will follow  
